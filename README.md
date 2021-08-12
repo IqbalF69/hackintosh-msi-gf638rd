@@ -83,4 +83,4 @@ This hackintosh EFI using multiple sources, and i may forget to add thanks to gi
 -  -- "However, due to issues with OEMs not using the latest EDKII builds you may find that the above combo will result in early boot failures. This is due to missing the MEMORY_ATTRIBUTE_TABLE and such we recommend disabling RebuildAppleMemoryMap and enabling EnableWriteUnprotector. More info on this is covered in the troubleshooting section". 
 
 ## ENJOY!
-
+![alt text](https://raw.githubusercontent.com/IqbalF69/hackintosh-msi-gf638rd/main/2021-08-12_12-35_1.png)
