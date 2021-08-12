@@ -19,7 +19,7 @@ This is an OpenCore 0.7.1 install for Catalina then updated to MacOS Big Sur 11.
 | WDC PC SN520 SDAPNUW-256G SSD | :white_check_mark: Microphone | |
 | 2TB HDD SEAGATE (upgraded) | :white_check_mark: Webcam | |
 | Intel Wireless   | :white_check_mark: Wifi using HeliPort | :x: iMessage/Facetime |
-| Core i7-8750H | :white_check_mark: Virtualization works! (Virualbox)  | |
+| Core i7-8750H | :white_check_mark: Virtualization works! (Virtualbox)  | |
 | Backlight Keyboard (Single-Color, Red) | :white_check_mark: Keyboard brightness | |
 | HDMI | :white_check_mark: HDMI |  |
 |[Manufacturers Website](https://www.msi.com/Laptop/GF63-8RD/Specification) | | |
