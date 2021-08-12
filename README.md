@@ -1,83 +1,86 @@
 # hackintosh-msi-gf638rd
 Hackintosh EFI OpenCore BigSur (Update from Catalina) for MSI laptop, with OLARILA
 
+
+
+#  MSI GF63 8RD Hackintosh Laptop
 This hackintosh is for MSI GF63 8RD, WIFI WORK using Heliport, HDMI working, sound working using map = 8, may different than other MSI GF638 RD
-💻 Specifications	👍 Functioning Components	⛔ Non-Functioning Components
-Intel HD 630	✅ Intel HD 630 1536mb working	❌ nVidia GTX 1050
-GeForce® GTX 1050 with 2GB GDDR5	✅ Wifi	❌ SD card reader
-Intel® HM175 chipset	✅ USB C/3.0	
-Realtek ALC898	✅ Ethernet port	
-17.3" HD display 1920x1080	✅ Audio	
-16gb 2400mhz DDR4	✅ Microphone	
-250GB WD Blue 3D NAND PC SSD	✅ iMessage/Facetime	
-1TB ADATA SU800 SSD	✅ Sleep/Wake functionality	
-Broadcom DW1820A BCM94350ZAE	✅ Keyboard brightness	
-Core i7 7700HQ	✅ Screen brightness adjustment	
-Backlight Keyboard (Single-Color, Red)	✅ Webcam	
-HDMI	✅ HDMI	
-Mini Display Port	✅ Mini Display Port	
-Manufacturers Website	✅ Ethernet through USB C	
-💪 Upgrades
-Wifi Card
-I purchased a Broadcom DW1820A BCM94350ZAE 2.4G/5G Dual Band 867Mbps M.2 NGFF WiFi Card with Bluetooth 4.1 and swapped it into the laptop.
+This is an OpenCore 0.7.1 install for Catalina then updated to MacOS Big Sur 11.5. This build initially a triple boot but then remove, only OpenCore data that can be copied into EFI Folder you have.
 
-USB C Hub
-Hub works and allows me to plugin additional USB items and read SD cards, but HDMI passthrough do not work. The ethernet connection does work, so I can just plugin the hub and be connected to a wired connection automatically.
+### MSI GL72M 7RDX Laptop 
+| :computer: Specifications | :thumbsup: Functioning Components | :no_entry: Non-Functioning Components |
+|--|--|--|
+| Intel UHD 630 | :white_check_mark: Intel UHD 630 2048 mb working |  |
+| GeForce® GTX 1050Ti with Max-Q Design, 4GB GDDR5 |  | :x: nVidia GTX 1050 |
+| Intel® HM370 chipset | :white_check_mark: USB C/3.0 | :x: Sleep/Wake functionality (only lock) |
+| Realtek ALC269 | :white_check_mark: Audio (ALCID=8) | |
+| 15.5" UHD display 1920x1080 | :white_check_mark: Screen brightness adjustment  | |  
+| 12gb 2400mhz DDR4 (Upgraded) |  | |
+| WDC PC SN520 SDAPNUW-256G SSD | :white_check_mark: Microphone | |
+| 2TB HDD SEAGATE (upgraded) | :white_check_mark: Webcam | |
+| Intel Wireless   | :white_check_mark: Wifi using HeliPort | :x: iMessage/Facetime |
+| Core i7-8750H | :white_check_mark: Ethernet port | |
+| Backlight Keyboard (Single-Color, Red) | :white_check_mark: Keyboard brightness | |
+| HDMI | :white_check_mark: HDMI |  |
+|[Manufacturers Website](https://www.msi.com/Laptop/GF63-8RD/Specification) | | |
 
-WD Blue 3D NAND 250GB PC SSD - SATA III 6 Gb/s M.2 2280 Solid State Drive
-Main boot drive for this machine.
 
-1TB ADATA SU800 SSD
-Windows and Ubuntu run off this drive, as well as a clone of the main SSD.
+## :muscle: Upgrades
 
-👴 BIOS Configuration
-The section below adapted from @0ranko0P's MSI-GL62M 7RD Hackintosh. This was huge, as I never knew how to access all the advanced settings in my BIOS.
+### HDD 2 TB Seagate for Data
+Initially use 2TB for boot, but the performance was poor, and change using SSD built-in MSI, side by side with Windows 10 OEM, and performance increasingly significant, it is like 10x!, 
 
-Some options only available in advanced mode:
-In BIOS, holding ALT + RIGHT-CTRL + SHIFT together then press F2
+**Some options only available in advanced mode:**\
+In BIOS, holding **ALT + RIGHT-CTRL + SHIFT** together then press **F2**
 
-Settings	
-CFG Lock	Disable
-CSM	Disable
-Fast Boot	Disable
-Intel Speed Shift(aka. HWP)	Enable
-Secure Boot	Disable
-Enable Hiberation	Disable
-DVMT Pre-Allocated	64M
+| Settings |  |
+|--|--|
+| `CFG Lock` | Disable |
+| `CSM` | Disable |
+| Fast Boot | Disable |
+| `Intel Speed Shift`(aka. HWP) | Enable |
+| Secure Boot | Disable |
+| Enable Hiberation | Disable |
+| DVMT Pre-Allocated | 64M |
+
+<pre>
 [Advanced] tab
 ├─ Power & Performance
 │  └─ CPU-Power Management Control
-│     ├─ Intel(R) Speed Shift Technology
+│     ├─ <b>Intel(R) Speed Shift Technology</b>
 │     └─ CPU Lock Configuration
-│        └─ CFG Lock
+│        └─ <b>CFG Lock</b>
 ├─ System Agent (SA) Configuration
 │  └─ Graphics Configuration
 │     └─ DVMT Pre-Allocated
 ├─ CSM Configuration
-│  └─ CSM Support
+│  └─ <b>CSM Support</b>
 │   
 └─ ACPI Settings
-   └─ Enable Hibernation
-📔 Installation Notes
-ACPI Patching Notes
-This laptop already has an embedded controller named EC in the DSDT, so it doesn't need to be patched.
+   └─ <b>Enable Hibernation</b>
+</pre>
 
-USB Port Limit
-I used Hackintool to fix my USB ports, along with a few other issues. It generated a new USBPorts.kext for my system and installed it in kexts/other. This iteration removes the MSI EPF USB and USB2.0-CRW SD Card Reader, as they serve no purpose.
+## :notebook_with_decorative_cover: Installation Notes
 
-Fixing the framebuffer
-This has been the bane of my existence when it comes to this laptop. I finally got it working with OpenCore after ages of messing around with Hackintool patches, Skylake spoofs(that previously worked in Clover) and other people's MSI laptop setups. After recently learning how to access the BIOS settings to change the DVMT Pre-Allocated to 64m, which then allowed me to remove the 32mb DVMT-prealloc patches. Then after much trial and error, instead of using the 2 Intel HD Graphics 630 listed under Kaby Lake in the laptop guide, I tried the Unlisted GPU 05001c59 mentioned right below them and now the LVDS screen no longer has a flicker.
+### ACPI Patching Notes
+THIS ACPI patch use multiple source information from Internet, and use OLARILA DSDT to Boot from CATALINA, (UNABLE TO DIRECTLY INSTALL BIG SUR!) after update into BIGSUR, audio only work using APPLEALC, and luckily i get map id (8) and work! may be different than yours!.
 
-Bluetooth using DW1820A BCM94350ZAE
-I have struggled for a long time with getting the Bluetooth to work on this laptop. The thing that finally worked for me was adding 'bpr_probedelay=200 bpr_initialdelay=400 bpr_postresetdelay=400' to my boot-args. Revised solutions to DW1820A support
+### Fixing the framebuffer
+FIXING FRAMEBUFFER USING HACKINTOOLS and boot-flag is to get HDMI and sleep/lock working (The issue initially arise before i get them to fix is blank screen, and find out to patch them based on reddit, github, olarilla and other source, keep digging and searching for hackintosher!
 
-Wifi using DW1820A BCM94350ZAE on Big Sur
-After getting Big Sur to work on my machine the biggest issue was getting the wifi to actually work. I had to set a boot-arg to brcmfx-driver=2 and change the entry in for AirPortBrcm4360_Injector.kext to MaxKernel 19.9.9. That's all in the OpenCore Guide, but thought it worth flagging.
+### Wifi on Big Sur
+Only work using itwlm instead airport, so that Heliport is mandatory!, need to work around for this to have default wifi work!
 
-Getting the touchpad and buttons to function
-@kOOsi3 pointed out a solution to getting the touchpad to work. I just had to use an older Rehabman kext instead of the latest version.
+### Getting the touchpad and buttons to function
+I just had to use an older Rehabman kext instead of the latest version. 
 
-🤦‍♂️ Outstanding Issues
-Flat audio through USB
-I've noticed this issue lately where the audio coming through the USB C hub to my Creative speakers is really flat sounding. Then when the laptop screen goes to sleep, it'll go back to sounding good, then when woken up it's flat again. When connected via Bluetooth it sounds great, but then I can't actually push audio out to it at the same time as my Airplay speakers. Still trying to figure out an ideal solution there.
+### Source and credit
+This hackintosh EFI using multiple sources, and i may forget to add thanks to github! Olarila! clover! opencore! always give best hint!
+- https://github.com/jbwharris/hackintosh-msi-GL72M-7RDX
+- https://github.com/johnnync13/XiaomiGaming
+- https://www.olarila.com
+- https://dortania.github.io/OpenCore-Install-Guide/ (JUST don't forget for MSI OEM - EnableWriteUnprotector set to YES!) to avoid boot failed - framelimit buffer , etc and look at the detail from dortania:
+-  -- "However, due to issues with OEMs not using the latest EDKII builds you may find that the above combo will result in early boot failures. This is due to missing the MEMORY_ATTRIBUTE_TABLE and such we recommend disabling RebuildAppleMemoryMap and enabling EnableWriteUnprotector. More info on this is covered in the troubleshooting section". 
+
+## ENJOY!
 
