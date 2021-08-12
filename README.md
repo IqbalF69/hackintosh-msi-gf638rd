@@ -15,11 +15,11 @@ This is an OpenCore 0.7.1 install for Catalina then updated to MacOS Big Sur 11.
 | Intel® HM370 chipset | :white_check_mark: USB C/3.0 | :x: Sleep/Wake functionality (only lock) |
 | Realtek ALC269 | :white_check_mark: Audio (ALCID=8) | |
 | 15.5" UHD display 1920x1080 | :white_check_mark: Screen brightness adjustment  | |  
-| 12gb 2400mhz DDR4 (Upgraded) |  | |
+| 12gb 2400mhz DDR4 (Upgraded) | :white_check_mark: Ethernet port  | |
 | WDC PC SN520 SDAPNUW-256G SSD | :white_check_mark: Microphone | |
 | 2TB HDD SEAGATE (upgraded) | :white_check_mark: Webcam | |
 | Intel Wireless   | :white_check_mark: Wifi using HeliPort | :x: iMessage/Facetime |
-| Core i7-8750H | :white_check_mark: Ethernet port | |
+| Core i7-8750H | :white_check_mark: Virtualization works! (Virualbox)  | |
 | Backlight Keyboard (Single-Color, Red) | :white_check_mark: Keyboard brightness | |
 | HDMI | :white_check_mark: HDMI |  |
 |[Manufacturers Website](https://www.msi.com/Laptop/GF63-8RD/Specification) | | |
